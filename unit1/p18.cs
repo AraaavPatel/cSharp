@@ -4,17 +4,8 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Enter a string: ");
         string input = Console.ReadLine();
-        
-        if (IsPalindrome(input))
-        {
-            Console.WriteLine("The string is a palindrome.");
-        }
-        else
-        {
-            Console.WriteLine("The string is not a palindrome.");
-        }
+        Console.WriteLine(IsPalindrome(input) ? "Palindrome" : "Not a palindrome");
     }
     
     static bool IsPalindrome(string str)
