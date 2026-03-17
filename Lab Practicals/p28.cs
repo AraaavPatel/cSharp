@@ -43,11 +43,11 @@ class Employee
         // Create employee objects using default constructor
         Employee emp1 = new Employee();
         emp1.employeeId = 101;
-        emp1.name = "John Doe";
+        emp1.name = "Devgang Patel";
         emp1.salary = 5000.00m;
 
         // Create employee objects using parameterized constructor
-        Employee emp2 = new Employee(102, "Jane Smith", 6000.00m);
+        Employee emp2 = new Employee(102, "Rajat Yadav", 6000.00m);
 
         // Display employee information
         Console.WriteLine("Employee 1 Information:");
