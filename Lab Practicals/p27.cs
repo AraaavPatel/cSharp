@@ -67,8 +67,5 @@ class Program
         // Using default constructor
         Student student2 = new Student(2867, "Rohit", 85.0);
         student2.DisplayDetails();
-
-        Student student3 = new Student(7985,"Aman",62.8);
-        student3.DisplayDetails();
     }
 }

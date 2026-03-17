@@ -22,9 +22,9 @@ class Rectangle
     }
     public void DisplayValues()
     {
-        Console.WriteLine($"Length: {length}");
-        Console.WriteLine($"Width: {width}");
-        Console.WriteLine($"Area: {CalculateArea()}");
+        Console.WriteLine($"Length : {length}");
+        Console.WriteLine($"Width : {width}");
+        Console.WriteLine($"Area : {CalculateArea()}");
     }
 }
 
