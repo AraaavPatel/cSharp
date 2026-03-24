@@ -1,26 +1,18 @@
 using System;
-
-// ─────────────────────────────────────────────
-// BASE CLASS — encapsulates common account data
-// ─────────────────────────────────────────────
 public class Account
 {
-    // Instance variables (encapsulated as protected)
+    
     protected string accountHolder;
     protected double balance;
 
-    // Constructor
     public Account(string holder, double initialBalance)
     {
         accountHolder = holder;
         balance = initialBalance;
     }
-
-    // Read-only properties (encapsulation)
     public string AccountHolder => accountHolder;
     public double Balance => balance;
 
-    // virtual — allows derived classes to override
     public virtual void Deposit(double amount)
     {
         if (amount <= 0)
@@ -51,22 +43,16 @@ public class Account
     }
 }
 
-
-// ─────────────────────────────────────────────
-// DERIVED CLASS 1 — SavingsAccount
-//   Extra variable : interestRate
-// ─────────────────────────────────────────────
 public class SavingsAccount : Account
 {
-    private double interestRate;   // additional instance variable
+    private double interestRate;   
 
     public SavingsAccount(string holder, double initialBalance, double rate)
-        : base(holder, initialBalance)   // calls base constructor
+        : base(holder, initialBalance)   
     {
         interestRate = rate;
     }
 
-    // New method specific to SavingsAccount
     public void ApplyInterest()
     {
         double interest = balance * interestRate / 100;
@@ -74,23 +60,17 @@ public class SavingsAccount : Account
         Console.WriteLine($"Interest applied ({interestRate}%): +{interest:F2}. New Balance: {balance:F2}");
     }
 
-    // Method overriding — extends base DisplayBalance
     public override void DisplayBalance()
     {
-        base.DisplayBalance();   // calls parent version first
+        base.DisplayBalance();   
         Console.WriteLine($"Interest Rate : {interestRate}%");
         Console.WriteLine("-----------------------");
     }
 }
 
-
-// ─────────────────────────────────────────────
-// DERIVED CLASS 2 — CurrentAccount
-//   Extra variable : overdraftLimit
-// ─────────────────────────────────────────────
 public class CurrentAccount : Account
 {
-    private double overdraftLimit;   // additional instance variable
+    private double overdraftLimit;   
 
     public CurrentAccount(string holder, double initialBalance, double limit)
         : base(holder, initialBalance)
@@ -98,7 +78,6 @@ public class CurrentAccount : Account
         overdraftLimit = limit;
     }
 
-    // Method overriding — Withdraw behaves differently here
     public override void Withdraw(double amount)
     {
         if (amount <= 0)
@@ -117,7 +96,6 @@ public class CurrentAccount : Account
                           (balance < 0 ? " (overdraft in use)" : ""));
     }
 
-    // Method overriding — extends base DisplayBalance
     public override void DisplayBalance()
     {
         base.DisplayBalance();
@@ -126,10 +104,6 @@ public class CurrentAccount : Account
     }
 }
 
-
-// ─────────────────────────────────────────────
-// TEST PROGRAM
-// ─────────────────────────────────────────────
 class Program
 {
     static void Main()
@@ -143,7 +117,6 @@ class Program
         Console.Write("Enter initial balance: ");
         double initialBalance = double.Parse(Console.ReadLine()!);
 
-        // Polymorphism — base-class reference holds either derived object
         Account account;
 
         if (accountType == "savings")
@@ -159,7 +132,7 @@ class Program
             Console.Write("Enter withdrawal amount: ");
             savings.Withdraw(double.Parse(Console.ReadLine()!));
 
-            savings.ApplyInterest();   // SavingsAccount-specific method
+            savings.ApplyInterest();
             account = savings;
         }
         else if (accountType == "current")
@@ -183,7 +156,7 @@ class Program
             return;
         }
 
-        // Polymorphic call — correct DisplayBalance() runs at runtime
+        
         account.DisplayBalance();
     }
 }
